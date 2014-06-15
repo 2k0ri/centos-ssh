@@ -16,5 +16,7 @@ RUN curl https://github.com/2k0ri.keys >> /root/.ssh/authorized_keys
 
 RUN yum update -y
 
+ENV HOME /root
+
 EXPOSE 22
 CMD /sbin/init
