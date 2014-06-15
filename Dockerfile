@@ -18,5 +18,7 @@ RUN yum update -y
 
 ENV HOME /root
 
+RUN curl -L https://www.opscode.com/chef/install.sh | bash
+
 EXPOSE 22
 CMD /sbin/init
