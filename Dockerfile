@@ -3,7 +3,7 @@ FROM centos
 ENV HOME /root
 
 RUN rpm -e cracklib-dicts --nodeps
-RUN yum install -y openssh-server cracklib-dicts passwd
+RUN yum install -y openssh-server cracklib-dicts passwd sudo
 RUN echo d0cker | passwd --stdin root
 
 ## https://github.com/dotcloud/docker/issues/1240#issuecomment-21807183
@@ -18,6 +18,9 @@ RUN curl https://github.com/2k0ri.keys >> /root/.ssh/authorized_keys
 
 # install chef
 RUN curl -L https://www.opscode.com/chef/install.sh | bash
+
+# allow tty-less sudo
+RUN sed -i -Ee "s/^([^#]*requiretty)$/# \1/" /etc/sudoers
 
 RUN yum update -y
 
